@@ -3,66 +3,226 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#eeead9">
-  <meta name="description" content="A small personal homepage with a pocket-sized arcade game.">
-  <title>Kirmy.org · A little corner of the internet</title>
+  <meta name="theme-color" content="#f7f1e4">
+  <meta name="description" content="Six vegetarian suppers made with tins, pulses, rice and pasta. Browse by ingredient and print the recipes.">
+  <title>The Pantry Book · Kirmy.org</title>
+  <link rel="canonical" href="https://kirmy.org/">
   <link rel="stylesheet" href="./home.css">
-  <script src="./arcade.js" defer></script>
+  <script defer src="./pantry.js"></script>
 </head>
 <body>
-  <header class="masthead">
-    <div class="shell masthead-inner">
-      <a class="wordmark" href="./"><span class="wordmark-icon" aria-hidden="true">✱</span> kirmy<span>.org</span></a>
-      <nav aria-label="Main">
-        <a class="nav-link" href="#arcade">Arcade <span aria-hidden="true">↓</span></a>
-      </nav>
-    </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead spread">
+    <a class="wordmark" href="./">The Pantry Book</a>
+    <nav aria-label="Main navigation">
+      <a href="#index">Recipe index</a>
+      <button type="button" data-print hidden>Print book</button>
+    </nav>
   </header>
-  <main class="shell">
-    <section class="welcome" aria-labelledby="welcome-title">
-      <div class="intro">
-        <p class="eyebrow"><span class="cursor" aria-hidden="true"></span> Personal homepage</p>
-        <h1 id="welcome-title">My little corner of <em>the internet.</em></h1>
-        <p class="intro-note">“hi I dont know what to put on this site”</p>
-        <p class="intro-caption">So I put a space game here.</p>
-        <a class="jump" href="#arcade">Try the arcade <span aria-hidden="true">↘</span></a>
-      </div>
 
-      <section class="cabinet" id="arcade" aria-labelledby="game-name">
-        <div class="cabinet-header">
-          <h2 id="game-name"><span class="led" aria-hidden="true"></span> Star Dial</h2>
-          <span class="cabinet-mark" aria-hidden="true">KIRMY ARCADE</span>
-        </div>
-        <div class="monitor">
-          <div class="scoreboard" role="group" aria-label="Game scores">
-            <span>Score <strong id="score">00</strong></span>
-            <span>Best <strong id="best">00</strong></span>
-            <span>Time <strong id="time">25</strong></span>
-          </div>
-          <div class="screen" id="game-screen">
-            <canvas id="game-canvas" width="320" height="160" aria-label="Star Dial game field"></canvas>
-            <div class="screen-title" id="screen-title" aria-hidden="true">
-              <span>STAR DIAL</span>
-              <small>Catch the falling stars</small>
-            </div>
-          </div>
-        </div>
-        <div class="control-panel">
-          <div class="direction-controls" role="group" aria-label="Move your ship">
-            <button class="direction" type="button" data-direction="-1" aria-label="Move left" disabled>←</button>
-            <button class="direction" type="button" data-direction="1" aria-label="Move right" disabled>→</button>
-          </div>
-          <button class="play" id="play" type="button" aria-describedby="game-instructions" disabled>Play <span aria-hidden="true">▶</span></button>
-        </div>
-        <p class="controls-hint" id="game-instructions">Use the arrow keys or buttons to catch stars in 25 seconds.</p>
-        <noscript><p class="controls-hint">Enable JavaScript to play Star Dial.</p></noscript>
-        <p id="game-status" class="sr-only" role="status"></p>
-      </section>
+  <main id="main" class="spread">
+    <section class="front" aria-labelledby="title">
+      <div class="front-copy">
+        <p class="rubric">A cupboard cookbook</p>
+        <h1 id="title">Cupboard<br>suppers.</h1>
+        <p class="lede">Six vegetarian suppers for the nights you’d rather open a tin than go to the shop.</p>
+        <a class="start" href="#index">Find a recipe <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="plate">
+        <img src="./assets/ferry-seed-annual.jpg" width="760" height="1150"
+             alt="A 1906 seed catalogue illustration of scarlet tomatoes and green bean pods">
+        <figcaption><a href="https://commons.wikimedia.org/wiki/File:Seed_annual_1906_(1906)_(14780318412).jpg">D. M. Ferry &amp; Co. seed annual, 1906</a></figcaption>
+      </figure>
     </section>
+
+    <section id="index" class="index" aria-labelledby="index-title">
+      <div class="index-heading">
+        <h2 id="index-title">Recipe index</h2>
+        <div class="filter" data-filter hidden>
+          <label for="ingredient">Start with</label>
+          <select id="ingredient">
+            <option value="all">Any ingredient</option>
+            <option value="beans">Tinned beans</option>
+            <option value="lentils">Lentils</option>
+            <option value="pasta">Pasta</option>
+            <option value="rice">Rice</option>
+            <option value="tomatoes">Tinned tomatoes</option>
+          </select>
+        </div>
+      </div>
+      <ul class="index-list">
+        <li data-ingredients="beans tomatoes"><a href="#chickpeas">Smoky tomato chickpeas</a><span>25 min</span></li>
+        <li data-ingredients="lentils"><a href="#dal">Coconut red lentils</a><span>30 min</span></li>
+        <li data-ingredients="beans"><a href="#toast">White beans on toast</a><span>15 min</span></li>
+        <li data-ingredients="pasta tomatoes"><a href="#pasta">Tomato and butter pasta</a><span>25 min</span></li>
+        <li data-ingredients="rice"><a href="#rice">Crisp rice with peas</a><span>35 min</span></li>
+        <li data-ingredients="lentils"><a href="#potatoes">Mustard lentils and potatoes</a><span>25 min</span></li>
+      </ul>
+      <p class="visually-hidden" data-result role="status"></p>
+    </section>
+
+    <div class="recipe-book">
+      <article id="chickpeas" class="recipe" aria-labelledby="chickpeas-title">
+        <header class="recipe-header">
+          <p class="rubric">25 minutes · Serves 2</p>
+          <h2 id="chickpeas-title">Smoky tomato chickpeas</h2>
+          <p>Spoon them over toast so the bread catches the sauce.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>1 tbsp olive oil</li><li>2 garlic cloves, chopped</li>
+              <li>1½ tsp smoked paprika</li><li>1 × 400 g tin chopped tomatoes</li>
+              <li>1 × 400 g tin chickpeas, drained</li><li>1 tsp cider vinegar</li><li>Salt and pepper</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Warm the oil in a frying pan over medium heat. Stir the garlic for 30 seconds, then stir in the paprika.</li>
+              <li>Add the tomatoes right away. Stir in the chickpeas and a pinch of salt. Simmer uncovered for 15–18 minutes, until the sauce clings to the chickpeas.</li>
+              <li>Crush a few chickpeas against the side of the pan. Stir in the vinegar and season to taste.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+
+      <article id="dal" class="recipe" aria-labelledby="dal-title">
+        <header class="recipe-header">
+          <p class="rubric">30 minutes · Serves 2–3</p>
+          <h2 id="dal-title">Coconut red lentils</h2>
+          <p>The lentils cook down to a soft, spoonable stew.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>1 tbsp neutral oil</li><li>1 small onion, finely chopped</li>
+              <li>2 tsp curry powder</li><li>150 g split red lentils, rinsed</li>
+              <li>200 ml coconut milk</li><li>350 ml water</li><li>Salt and ½ lemon</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Soften the onion in the oil over medium heat for 6 minutes. Stir in the curry powder for 30 seconds.</li>
+              <li>Add the lentils, coconut milk, water and ½ tsp salt. Bring to a simmer, then cook gently, uncovered, for about 20 minutes. Stir occasionally and add a splash of water if it gets too thick before the lentils are soft.</li>
+              <li>Squeeze in lemon to taste. Serve with flatbread or rice if you have some.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+
+      <article id="toast" class="recipe" aria-labelledby="toast-title">
+        <header class="recipe-header">
+          <p class="rubric">15 minutes · Serves 2</p>
+          <h2 id="toast-title">White beans on toast</h2>
+          <p>Press about half the beans into the oil. The others can stay whole.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>2 tbsp olive oil</li><li>2 garlic cloves, sliced</li>
+              <li>½ tsp dried rosemary, crushed</li><li>1 × 400 g tin cannellini beans, drained</li>
+              <li>4 tbsp water</li><li>½ lemon</li><li>4 slices of bread</li><li>Salt and pepper</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Warm the oil and garlic over medium-low heat until the garlic smells sweet, about 1 minute. Add the rosemary, beans and water.</li>
+              <li>Simmer for 6–8 minutes. Mash roughly with a fork, squeeze in lemon and season.</li>
+              <li>Toast the bread and spread the warm beans over it.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+
+      <article id="pasta" class="recipe" aria-labelledby="pasta-title">
+        <header class="recipe-header">
+          <p class="rubric">25 minutes · Serves 2</p>
+          <h2 id="pasta-title">Tomato and butter pasta</h2>
+          <p>A little pasta water helps the butter and tomatoes come together.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>200 g dried short pasta</li><li>30 g butter</li>
+              <li>1 small onion, finely chopped</li><li>1 × 400 g tin chopped tomatoes</li>
+              <li>½ tsp dried oregano</li><li>Salt and pepper</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Bring a pot of salted water to a boil. In a frying pan, melt two-thirds of the butter and cook the onion until soft, about 5 minutes.</li>
+              <li>Add tomatoes, oregano and a pinch of salt. Simmer uncovered for 15 minutes while the pasta cooks.</li>
+              <li>Before draining, save half a mug of pasta water. Toss the pasta with the sauce and remaining butter. Loosen with a splash of pasta water and season.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+
+      <article id="rice" class="recipe" aria-labelledby="rice-title">
+        <header class="recipe-header">
+          <p class="rubric">35 minutes · Serves 2</p>
+          <h2 id="rice-title">Crisp rice with peas</h2>
+          <p>A wide pan gives the rice space to form a crust.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>150 g long-grain white rice</li><li>2 tbsp neutral oil</li>
+              <li>1 small onion, finely chopped</li><li>150 g frozen peas</li>
+              <li>1½ tbsp soy sauce</li><li>1 tsp rice or cider vinegar</li><li>Black pepper</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Cook the rice as directed on the packet. Fluff it and let steam escape while you cook the peas.</li>
+              <li>Fry the onion in half the oil in a wide skillet for 5 minutes. Stir in the frozen peas and cook until hot all the way through. Tip into a bowl.</li>
+              <li>Heat the remaining oil over medium-high heat. Press the rice into the pan and leave it alone for 3 minutes. Turn it in broad patches and cook for another 2–3 minutes, until crisp in places. Fold in the peas, soy sauce, vinegar and pepper.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+
+      <article id="potatoes" class="recipe" aria-labelledby="potatoes-title">
+        <header class="recipe-header">
+          <p class="rubric">25 minutes · Serves 2</p>
+          <h2 id="potatoes-title">Mustard lentils and potatoes</h2>
+          <p>Dress the potatoes while they’re hot so they take up the mustard and vinegar.</p>
+        </header>
+        <div class="recipe-columns">
+          <section aria-label="Ingredients">
+            <h3>Ingredients</h3>
+            <ul class="ingredients">
+              <li>450 g potatoes</li><li>1 × 400 g tin green lentils, drained</li>
+              <li>2 tbsp olive oil</li><li>1 tbsp cider vinegar</li>
+              <li>2 tsp Dijon mustard</li><li>1 small shallot, finely chopped</li><li>Salt and pepper</li>
+            </ul>
+          </section>
+          <section aria-label="Method">
+            <h3>Method</h3>
+            <ol>
+              <li>Cut the potatoes into 2 cm pieces. Cover with salted water, bring to a boil and simmer until fork-tender, about 12–15 minutes.</li>
+              <li>While they cook, whisk the oil, vinegar, mustard, shallot and a pinch of salt in a large bowl.</li>
+              <li>In the last minute, add the lentils to the potato pot to warm through. Drain well and toss with the dressing. Finish with pepper.</li>
+            </ol>
+          </section>
+        </div>
+      </article>
+    </div>
   </main>
-  <footer class="shell footer">
-    <span>© kirmy.org</span>
-    <a href="https://github.com/zeousky/kirmy-org-pages">Site source <span aria-hidden="true">↗</span></a>
+
+  <footer class="spread footer">
+    <a href="./">The Pantry Book</a>
+    <a href="#index">Back to the index ↑</a>
   </footer>
 </body>
 </html>
