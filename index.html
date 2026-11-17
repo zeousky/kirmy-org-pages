@@ -1,11 +1,68 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeead9">
+  <meta name="description" content="A small personal homepage with a pocket-sized arcade game.">
+  <title>Kirmy.org · A little corner of the internet</title>
+  <link rel="stylesheet" href="./home.css">
+  <script src="./arcade.js" defer></script>
 </head>
 <body>
-    <h1>hi I dont know what to put on this site</h1>
+  <header class="masthead">
+    <div class="shell masthead-inner">
+      <a class="wordmark" href="./"><span class="wordmark-icon" aria-hidden="true">✱</span> kirmy<span>.org</span></a>
+      <nav aria-label="Main">
+        <a class="nav-link" href="#arcade">Arcade <span aria-hidden="true">↓</span></a>
+      </nav>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="welcome" aria-labelledby="welcome-title">
+      <div class="intro">
+        <p class="eyebrow"><span class="cursor" aria-hidden="true"></span> Personal homepage</p>
+        <h1 id="welcome-title">My little corner of <em>the internet.</em></h1>
+        <p class="intro-note">“hi I dont know what to put on this site”</p>
+        <p class="intro-caption">So I put a space game here.</p>
+        <a class="jump" href="#arcade">Try the arcade <span aria-hidden="true">↘</span></a>
+      </div>
+
+      <section class="cabinet" id="arcade" aria-labelledby="game-name">
+        <div class="cabinet-header">
+          <h2 id="game-name"><span class="led" aria-hidden="true"></span> Star Dial</h2>
+          <span class="cabinet-mark" aria-hidden="true">KIRMY ARCADE</span>
+        </div>
+        <div class="monitor">
+          <div class="scoreboard" role="group" aria-label="Game scores">
+            <span>Score <strong id="score">00</strong></span>
+            <span>Best <strong id="best">00</strong></span>
+            <span>Time <strong id="time">25</strong></span>
+          </div>
+          <div class="screen" id="game-screen">
+            <canvas id="game-canvas" width="320" height="160" aria-label="Star Dial game field"></canvas>
+            <div class="screen-title" id="screen-title" aria-hidden="true">
+              <span>STAR DIAL</span>
+              <small>Catch the falling stars</small>
+            </div>
+          </div>
+        </div>
+        <div class="control-panel">
+          <div class="direction-controls" role="group" aria-label="Move your ship">
+            <button class="direction" type="button" data-direction="-1" aria-label="Move left" disabled>←</button>
+            <button class="direction" type="button" data-direction="1" aria-label="Move right" disabled>→</button>
+          </div>
+          <button class="play" id="play" type="button" aria-describedby="game-instructions" disabled>Play <span aria-hidden="true">▶</span></button>
+        </div>
+        <p class="controls-hint" id="game-instructions">Use the arrow keys or buttons to catch stars in 25 seconds.</p>
+        <noscript><p class="controls-hint">Enable JavaScript to play Star Dial.</p></noscript>
+        <p id="game-status" class="sr-only" role="status"></p>
+      </section>
+    </section>
+  </main>
+  <footer class="shell footer">
+    <span>© kirmy.org</span>
+    <a href="https://github.com/zeousky/kirmy-org-pages">Site source <span aria-hidden="true">↗</span></a>
+  </footer>
 </body>
 </html>
